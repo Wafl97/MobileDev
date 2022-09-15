@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        color: "#0a0a32",
     },
     button: {
         backgroundColor: 'dodgerblue',
@@ -16,6 +17,13 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+    },
+    details: {
+        flex: 1,
+        fontSize: 16,
+        margin: "1em",
+        borderTopColor: "#0a0a32",
+        borderTopWidth: 2,
     }
 });
 

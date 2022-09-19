@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import Style from '../styles/default';
 
 
@@ -12,7 +12,7 @@ export default function NavButton(props: Props) {
 
     return (
         <Pressable onPress={ props.navTo } style={ Style.button } >
-            { props.title }
+            <Text>{ props.title }</Text>
         </Pressable>
     )
 }

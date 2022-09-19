@@ -13,7 +13,7 @@ const HomeScreen: React.FC<ScreenProps> = (props) => {
     <View style={ Style.container }>
       <Text style={ Style.title } >Home Screen</Text>
       <NavButton title="About" navTo={ () => props.navigation.navigate("About") } />
-      <NavButton title="Movies" navTo={ () => props.navigation.navigate("Movies", { query: "", rtn: false}) } />
+      <NavButton title="Movies" navTo={ () => props.navigation.navigate("Movies") } />
     </View>
   )
 }

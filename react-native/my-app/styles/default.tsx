@@ -16,7 +16,11 @@ const styles = StyleSheet.create({
         margin: '0.25em'
     },
     title: {
-        fontSize: 24,
+        fontSize: 32,
+    },
+    stat: {
+        fontSize: 20,
+        color: "#fff"
     },
     details: {
         flex: 1,
@@ -24,6 +28,33 @@ const styles = StyleSheet.create({
         margin: "1em",
         borderTopColor: "#0a0a32",
         borderTopWidth: 2,
+    },
+    image_large: {
+        justifyContent: "center",
+        height: 500,
+        width: 300,
+        margin: 5
+    },
+    image_small: {
+        justifyContent: "center",
+        height: 150,
+        width: 150,
+        margin: 5
+    },
+    list_title: {
+        color: "white",
+        fontSize: 16,
+        lineHeight: 20,
+        fontWeight: "bold",
+        textAlign: "center",
+        backgroundColor: "#000000c0"
+    },
+    movie: {
+        flexDirection: "row",
+        backgroundColor: "#000000c0",
+        width: "100%",
+        justifyContent: "center",
+        padding: 5
     }
 });
 

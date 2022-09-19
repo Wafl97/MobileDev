@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import { View, Text, SectionList, FlatList, Pressable } from "react-native";
-import NavButton from "../components/NavButton";
+import { View, Text, SectionList, FlatList, Pressable, TextInput } from "react-native";
 import { RootStackParamList } from "../misc/types";
 import Style from '../styles/default';
+import NavButton from "../components/NavButton";
+import MovieList from "../components/MovieList";
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "Movies">;
 
@@ -37,14 +38,10 @@ const MoviesScreen: React.FC<ScreenProps> = (props) => {
         },
         {
             id: "5",
-            title: "Si6"
+            title: "VI"
         },
         
     ]
-
-    const Item = (item: any) => (
-        <NavButton title={ item.title } navTo={ () => props.navigation.navigate("Movie", { id: item.id, title: item.title }) } />
-    );
   
     return (
         <View style={ Style.container }>
@@ -57,13 +54,9 @@ const MoviesScreen: React.FC<ScreenProps> = (props) => {
                     <Text style={ Style.title }>...</Text>
                 </Pressable>
                 : 
-                <Text>{ props.route.params.query == "" ? "Search" : props.route.params.query }</Text> 
+                <TextInput placeholder="Search"/>
             }
-            <FlatList 
-                data={ DATA } 
-                renderItem={({ item }) => (<Item title={ item.title } />)} 
-                keyExtractor={item => item.id} 
-            />
+            <MovieList DATA={ DATA } navigation={ props.navigation } />
         </View>
     )
 }

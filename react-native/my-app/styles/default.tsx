@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
         margin: "1em",
         borderTopColor: "#0a0a32",
         borderTopWidth: 2,
+    },
+    poster: {
+        height: 50,
+        width: 300
     }
 });
 

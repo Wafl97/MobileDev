@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
-import { View, Text, SectionList, FlatList, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, View, Text, Pressable, Image } from "react-native";
 import NavButton from "../components/NavButton";
 import { RootStackParamList } from "../misc/types";
 import Style from '../styles/default';
+import { api_key, api_url, img_path } from "../misc/misc";
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "Movies">;
 
@@ -11,7 +12,21 @@ const MoviesScreen: React.FC<ScreenProps> = (props) => {
 
     const [isSearchVisable, setSearchVisable] = useState(props.route.params.rtn);
 
-    const [currnetSearch, setCurrentSearch] = useState("");
+    const [currnetSearch, setCurrentSearch] = useState([]);
+
+    const [movies, setMovies] = useState();
+
+    useEffect(() => {
+        console.log("Fetching...");
+        fetch(api_url + "/trending/movie/week" + api_key)
+        .then((res) => (res.json()))
+        //.then((res) => (console.log(res.results)))
+        .then((json) => (setMovies(json.results)));
+
+        return function() {
+            console.log("...Done");
+        }
+    }, [] );
 
     //TODO fetch real data
     const DATA = [ 
@@ -43,7 +58,10 @@ const MoviesScreen: React.FC<ScreenProps> = (props) => {
     ]
 
     const Item = (item: any) => (
-        <NavButton title={ item.title } navTo={ () => props.navigation.navigate("Movie", { id: item.id, title: item.title }) } />
+        <View>
+            <NavButton title={ item.title } navTo={ () => props.navigation.navigate("Movie", { id: item.id, title: item.title }) } />
+            <Image style={ Style.poster } source={{ uri: img_path + item.img_path }}/>
+        </View>
     );
   
     return (
@@ -51,18 +69,10 @@ const MoviesScreen: React.FC<ScreenProps> = (props) => {
             <Text style={ Style.title }>Movies</Text>
             <NavButton title="Back to Home" navTo={ () => props.navigation.navigate("Home") } />
             <Text style={ Style.title }>Find Movie</Text>
-            { !isSearchVisable 
-                ? 
-                <Pressable onPress={ () => setSearchVisable(true) }>
-                    <Text style={ Style.title }>...</Text>
-                </Pressable>
-                : 
-                <Text>{ props.route.params.query == "" ? "Search" : props.route.params.query }</Text> 
-            }
             <FlatList 
-                data={ DATA } 
-                renderItem={({ item }) => (<Item title={ item.title } />)} 
-                keyExtractor={item => item.id} 
+                data={ movies } 
+                renderItem={({ item }) => (<Item title={ item.title } img_path={ item.poster_path } id={ item.id }/>)} 
+                keyExtractor={ item => item.id } 
             />
         </View>
     )

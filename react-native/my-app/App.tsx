@@ -17,7 +17,7 @@ export default function App() {
         <Stack.Screen name="Home" component={ Home } />
         <Stack.Screen name="About" component={ About } />
         <Stack.Screen name="Movies" component={ Movies } />
-        <Stack.Screen name="Movie" component={ Movie } />
+        <Stack.Screen name="Movie" component={ Movie } options={{ title: "Movie" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

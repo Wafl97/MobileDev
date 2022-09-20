@@ -1,15 +1,19 @@
 import { StyleSheet } from "react-native";
 
+const main_color = "#0f0fff";
+const dark_grey_alfa = "#000000c0";
+const backgroundColor = "#f0f0ff";
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: backgroundColor,
         alignItems: 'center',
         justifyContent: 'center',
         color: "#0a0a32",
     },
     button: {
-        backgroundColor: 'dodgerblue',
+        backgroundColor: main_color,
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1em',
@@ -26,7 +30,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         margin: "1em",
-        borderTopColor: "#0a0a32",
+        borderTopColor: main_color,
         borderTopWidth: 2,
     },
     image_large: {
@@ -37,8 +41,8 @@ const styles = StyleSheet.create({
     },
     image_small: {
         justifyContent: "center",
-        height: 150,
-        width: 150,
+        height: 120,
+        width: 120,
         margin: 5
     },
     list_title: {
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
         lineHeight: 20,
         fontWeight: "bold",
         textAlign: "center",
-        backgroundColor: "#000000c0"
+        backgroundColor: dark_grey_alfa
     },
     movie: {
         flexDirection: "row",
@@ -55,6 +59,14 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         padding: 5
+    },
+    footer: {
+        backgroundColor: main_color,
+        width: "100%",
+        height: "5em",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 16
     }
 });
 

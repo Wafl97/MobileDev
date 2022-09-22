@@ -2,10 +2,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
-import NavButton from "../components/NavButton";
-import { RootStackParamList } from "../misc/types";
+import { RootStackParamList } from "../services/types";
 import Style from '../styles/default';
-import { api_url, api_key, img_path } from "../misc/misc";
+import { api_url, api_key, img_path } from "../services/env";
+import Footer from "../components/Footer";
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, "Movie">;
 
@@ -23,10 +23,10 @@ const MovieScreen: React.FC<ScreenProps> = (props) => {
 
     useEffect(() => {
         console.log("Getting movie...");
+        props.navigation.setOptions({ title: props.route.params.title });
         fetch(api_url + "/movie/" + props.route.params.id + api_key)
-        .then((res) => (res.json()))
-        .then((json) => (setMovie(json)));
-
+        .then((res) => res.json())
+        .then((json) => setMovie(json));
         return function() {
             console.log("...Done");
         }
@@ -34,13 +34,19 @@ const MovieScreen: React.FC<ScreenProps> = (props) => {
   
     return (
         <View style={ Style.container }>
-            <Text style={ Style.title }>{ movie.title }</Text>
             <View style={ Style.movie }>
-                <Image style={ Style.image_large } source={{ uri: img_path + movie.poster_path }} />
+                {
+                    movie.poster_path == "" 
+                    ?
+                    <Text>LOADING...</Text>
+                    :
+                    <Image style={ Style.image_large } source={{ uri: img_path + movie.poster_path }} />
+                }
                 <Text style={ Style.stat }>Runtime: { movie.runtime }</Text>
             </View>
             <Text style={ Style.title }>Summary</Text>
             <Text style={ Style.details }>{ movie.overview }</Text>
+            <Footer navigationCallBack={ () => props.navigation.navigate("About") } />
         </View>
     )
 }

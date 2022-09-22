@@ -1,12 +1,19 @@
 import React from "react";7
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Style from "../styles/default";
 
-export default function Footer() {
+interface Props {
+    navigationCallBack: () => void;
+}
+
+export default function Footer(props: Props) {
 
     return (
-        <View style={ Style.footer }>
-            <Text>A - FOOTER </Text>
-        </View>
+        <Pressable 
+            style={ Style.footer }
+            onPress={ props.navigationCallBack }    
+        >
+            <Text style={ Style.footer_text } >About</Text>
+        </Pressable>
     )
 }

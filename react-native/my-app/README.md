@@ -1,5 +1,0 @@
-# React App
-
-## Setup
-
-## Run

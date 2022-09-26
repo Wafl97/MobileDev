@@ -1,5 +1,5 @@
 import React from "react";7
-import { View, Text, Pressable } from "react-native";
+import { Text, Pressable } from "react-native";
 import Style from "../styles/default";
 
 interface Props {

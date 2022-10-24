@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     movie: {
         flexDirection: "row",
-        backgroundColor: "#000000c0",
+        backgroundColor: "#0000ff80",
         width: "100%",
         justifyContent: "center",
         padding: 5

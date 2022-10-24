@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:tools="http://schemas.android.com/tools"
+                                   android:layout_width="fill_parent"
+                                   android:layout_height="wrap_content"
+                                   android:id="@+id/card_view"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:layout_margin="0dp"
+                                   android:padding="0dp"
+                                   app:cardBackgroundColor="@color/cardview_dark_background"
+                                   app:cardCornerRadius="0dp"
+                                   app:cardElevation="0dp"
+                                   app:contentPadding="0dp">
+    <RelativeLayout android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content"
+                                                       android:id="@+id/relativeLayout">
+        <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                android:contentDescription="@string/movie_image_description"/>
+        <TextView
+                android:gravity="center"
+                android:id="@+id/item_title"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_alignLeft="@+id/item_image"
+                android:layout_alignRight="@+id/item_image"
+                android:layout_alignTop="@+id/item_image"
+                android:layout_alignBottom="@+id/item_image"
+                android:backgroundTint="@color/dark_gray_alpha"
+                android:background="@color/dark_gray_alpha"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

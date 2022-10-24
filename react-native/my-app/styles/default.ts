@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 const main_color = "#0f0fff";
 const dark_grey_alfa = "#000000c0";
-const backgroundColor = "#f0f0ff";
+const secondary_color = "#f0f0ff";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: backgroundColor,
+        backgroundColor: secondary_color,
         alignItems: 'center',
         justifyContent: 'center',
         color: "#0a0a32",
@@ -16,15 +16,16 @@ const styles = StyleSheet.create({
         backgroundColor: main_color,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1em',
-        margin: '0.25em'
+        padding: 5,
+        margin: '0.25em',
+        color: secondary_color
     },
     title: {
         fontSize: 32,
     },
     stat: {
         fontSize: 20,
-        color: "#fff"
+        color: secondary_color
     },
     details: {
         flex: 1,
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     },
     image_large: {
         justifyContent: "center",
-        height: 500,
+        height: 400,
         width: 300,
         margin: 5
     },
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     list_title: {
-        color: "white",
+        color: secondary_color,
         fontSize: 16,
         lineHeight: 20,
         fontWeight: "bold",
@@ -63,11 +64,34 @@ const styles = StyleSheet.create({
     footer: {
         backgroundColor: main_color,
         width: "100%",
-        height: "5em",
+        height: "2.5em",
         justifyContent: "center",
         alignItems: "center",
-        fontSize: 16
+    },
+    footer_text: {
+        fontSize: 16,
+        color: secondary_color
+    },
+    header: {
+        alignItems: "center",
+        backgroundColor: main_color
+    },
+    search_field: {
+        borderColor: main_color,
+        borderWidth: 2,
+        width: 380,
+        height: 50,
+        borderRadius: 5
+    },
+    missing_img: {
+        backgroundColor: main_color,
+        width: 120,
+        height: 120,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 5
     }
 });
 
 export default styles;
+export { main_color, dark_grey_alfa, secondary_color };

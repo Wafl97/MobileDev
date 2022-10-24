@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MDb-GO</string>
+    <string name="api_url">https://api.themoviedb.org/3/</string>
+    <string name="api_key">f39192085612fca04ed55b2c8a67faf4</string>
+    <string name="img_path">https://image.tmdb.org/t/p/w500/</string>
+    <string name="element_text">Lorem ipsum</string>
+    <string name="movie_image_description">Movie Image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_button_text">About</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="author_text">By Marc L. W. Bertelsen (berte20)</string>
+    <string name="movie_poster_descrption">MOVIE POSTER</string>
+</resources>

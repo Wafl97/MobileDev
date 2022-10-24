@@ -5,7 +5,7 @@ import { img_path } from "../services/env";
 
 interface Props {
     DATA: any,
-    navigation: any
+    navigation: any,
 };
 
 interface Movie {

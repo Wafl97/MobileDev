@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import MovieList from "../components/MovieList";
 import React, { useEffect, useState } from "react";
-import { View, Text, Pressable, TextInput } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import { RootStackParamList } from "../services/types";
 import Style from '../styles/default';
 import Footer from "../components/Footer";

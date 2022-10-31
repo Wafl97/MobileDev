@@ -1,0 +1,133 @@
+:root {
+  --card-height: 10rem;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #08080808;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #88888888;
+  border-radius: 50px;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+main {
+  width: 30rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-create-form > h3 {
+  margin: 0px;
+}
+
+.task-create-form {
+padding: 1rem;
+  min-width: 20rem;
+  border: dodgerblue solid 1px;
+  border-radius: 10px;
+}
+
+label {
+  text-align: left;
+}
+
+input[type=text] {
+  margin: .5rem;
+  width: auto;
+}
+
+.tasks {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 80vh;
+  padding-inline: 2rem;
+}
+
+.task-card {
+  border-style: solid;
+  border-color: #08080808;
+  border-width: .125rem;
+  border-radius: 10px;
+  margin: .25rem;
+  min-width: 20rem;
+  min-height: 10rem;
+  overflow: hidden;
+  padding: 0px;
+  background-color: #1e90ff40;
+  position: relative;
+  align-items: flex-start;
+  box-shadow: 5px 5px 5px 5px #88888888;
+  margin: 1rem;
+}
+
+.card-info {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-info > h3,
+.card-info > h4 {
+  margin: .75rem;
+}
+
+button, input[type=submit] {
+  background-color: dodgerblue;
+  color: azure;
+  cursor: pointer;
+  border-style: none;
+  height: 2rem;
+}
+
+button {
+  width: 100%;
+}
+
+.card-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-task {
+  background-color: tomato;
+}
+
+.task-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 100%;
+}
+
+.task-status[data-toggle=true]{
+  background-color: #88ff88;
+}
+
+.task-status[data-toggle=false] {
+  background-color: #ff8888;
+}

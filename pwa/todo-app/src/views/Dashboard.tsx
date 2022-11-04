@@ -10,7 +10,7 @@ interface DashboardProps {
  
 const Dashboard: React.FC<DashboardProps> = () => {
 
-    const { tasks } = useContext(TaskContext);
+    const { todoTasks, doingTasks, doneTasks } = useContext(TaskContext);
     
     return (
         <div>
@@ -19,10 +19,25 @@ const Dashboard: React.FC<DashboardProps> = () => {
             </header>
             <main className="main-content">
                 <TaskForm />
-                <div className="tasks">
-                    {tasks?.map((task, index) => {
-                        return <TaskCard key={`task:${index}`} task={task} />
-                    })}
+                <div className="tasks-wrapper">
+                    <div className="tasks tasks-todo">
+                        <h2>TODO</h2>
+                        {todoTasks?.map((task, index) => {
+                            return <TaskCard key={`task:${index}`} task={task} />
+                        })}
+                    </div>
+                    <div className="tasks tasks-doing">
+                        <h2>DOING</h2>
+                        {doingTasks?.map((task, index) => {
+                            return <TaskCard key={`task:${index}`} task={task} />
+                        })}
+                    </div>
+                    <div className="tasks tasks-done">
+                        <h2>DONE</h2>
+                        {doneTasks?.map((task, index) => {
+                            return <TaskCard key={`task:${index}`} task={task} />
+                        })}
+                    </div>
                 </div>
             </main>
             <footer>

@@ -12,7 +12,7 @@ const TaskForm: React.FC<TaskFormProps> = () => {
 
     const viewModel: TaskViewModel = TaskViewModel.getIntance();
 
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { todoTasks, setTodoTasks } = useContext(TaskContext);
 
     const taskTitle = useRef<HTMLInputElement>(null);
     const taskDescription = useRef<HTMLInputElement>(null);
@@ -30,8 +30,8 @@ const TaskForm: React.FC<TaskFormProps> = () => {
             taskTitle.current.value,
             taskDescription.current.value
         );
-        const tasksUpdated = (tasks !== undefined) ? [...tasks, newTask] : [newTask];
-        setTasks(tasksUpdated);
+        const tasksUpdated = (todoTasks !== undefined) ? [...todoTasks, newTask] : [newTask];
+        setTodoTasks(tasksUpdated);
         viewModel.add(newTask);
         taskTitle.current.value = "";
         taskDescription.current.value = "";

@@ -1,4 +1,4 @@
-import TaskModel from "../models/TaskModel";
+import TaskModel, { TaskState } from "../models/TaskModel";
 
 export default class TaskViewModel {
     private static instance: TaskViewModel;
@@ -26,6 +26,10 @@ export default class TaskViewModel {
 
     public getAll(): TaskModel[] {
         return this.taskList;
+    }
+
+    public getAllByState(state: TaskState) {
+        return this.taskList.filter(task => task.state === state);
     }
 
 }

@@ -12,12 +12,14 @@ import IRoute from "./interfaces/IRoute";
 
 function App() {
 
-  const [tasks, setTasks] = useState();
+  const [todoTasks, setTodoTasks] = useState();
+  const [doingTasks, setDoingTasks] = useState();
+  const [doneTasks, setDoneTasks] = useState();
 
   return (
     <div className="App">
       <BrowserRouter>
-        <TaskContext.Provider value={{ tasks, setTasks }}>
+        <TaskContext.Provider value={{ todoTasks, setTodoTasks, doingTasks, setDoingTasks, doneTasks, setDoneTasks }}>
           <Suspense fallback="Loading...">
             <Routes>
               {routes.map((route: IRoute, index: number) => {

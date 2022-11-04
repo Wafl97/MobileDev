@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 
 import TaskViewModel from "../viewmodels/TaskViewModel";
-import TaskModel from "../models/TaskModel";
+import TaskModel, { TaskState } from "../models/TaskModel";
 import TaskContext from "../context/TaskContext";
 
 interface TaskCardProps {
@@ -12,9 +12,9 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
 
     const viewModel: TaskViewModel = TaskViewModel.getIntance();
 
-    const { setTasks } = useContext(TaskContext);
+    const { setTodoTasks, setDoingTasks, setDoneTasks } = useContext(TaskContext);
 
-    const [completed, setCompleted] = useState(task.completed);
+    const [taskState, setTaskState] = useState(task.state);
     const [editModal, setEditModal] = useState(false);
 
     const taskTitle = useRef<HTMLInputElement>(null);
@@ -24,14 +24,21 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
         setEditModal(!editModal);
     }
 
-    const completeTask = () => {
-        setCompleted(!completed)
-        task.completed = completed;       
+    const nextState = () => {
+        task.nextState();       
+        setTaskState(task.state);
+        updateContext();
     }
 
     const deleteTask = () => {
         viewModel.remove(task);
-        setTasks(viewModel.getAll());
+        updateContext();
+    }
+
+    const updateContext = () => {
+        setTodoTasks(viewModel.getAllByState(TaskState.TODO));
+        setDoingTasks(viewModel.getAllByState(TaskState.DOING));
+        setDoneTasks(viewModel.getAllByState(TaskState.DONE));
     }
 
     const saveEdit = (event: { preventDefault: () => void; }) => {
@@ -74,11 +81,11 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
                 </div>}
                 
                 <div className="card-completed">
-                    <div className="task-status" data-toggle={completed} >
+                    <div className="task-status" data-toggle={taskState} >
                         <h3>Status</h3>
                     </div>
-                    <button onClick={completeTask}>
-                        {completed ? "Reopen" : "Complete Task"}
+                    <button onClick={nextState}>
+                        {taskState === TaskState.TODO ? "Start Task" : taskState === TaskState.DOING ? "Complete Task" : "-"}
                     </button>
                 </div>
             </div>

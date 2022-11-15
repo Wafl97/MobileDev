@@ -1,0 +1,37 @@
+.dashboard {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-content {
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.tasks {
+    display: flex;
+    margin: auto;
+    height: 100%;
+}
+
+.task-list {
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 12.75rem;
+    height: 75%;
+    background-color: #ffffff60;
+}
+
+.tasks-todo {
+    background-color: orange;
+}
+
+.tasks-doing {
+    background-color: dodgerblue;
+}
+
+.tasks-done {
+    background-color: chartreuse;
+}

@@ -1,0 +1,50 @@
+.task-card {
+    border-style: solid;
+    border-color: #08080808;
+    border-width: .125rem;
+    border-radius: 10px;
+    margin: .25rem;
+    width: 10rem;
+    min-height: 5rem;
+    overflow: hidden;
+    padding: 0px;
+    background-color: #ffffffbb;
+    position: relative;
+    align-items: flex-start;
+    box-shadow: 5px 5px 5px 5px #88888888;
+    margin: 1rem;
+}
+
+.card-info {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+}
+
+.card-info>h3 {
+    border-bottom: 2px solid #00000088;
+}
+
+.card-info>h3,
+.card-info>h4 {
+    margin: .75rem;
+}
+
+.card-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-task {
+    background-color: tomato;
+}
+
+.task-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 100%;
+}

@@ -1,0 +1,49 @@
+:root {
+  --card-height: 10rem;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #0808082d;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #000000b4;
+  border-radius: 50px;
+}
+
+html, body, .root, .App {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+button, input[type=submit] {
+  background-color: dodgerblue;
+  color: azure;
+  cursor: pointer;
+  border-style: none;
+  height: 2rem;
+}
+
+button {
+  width: 100%;
+}
+
+button:disabled {
+  background-color: rgb(140, 198, 255);
+}
+
+

@@ -4,8 +4,9 @@ exports.Task = exports.TaskModel = void 0;
 const tslib_1 = require("tslib");
 const typegoose_1 = require("@typegoose/typegoose");
 let Task = class Task {
-    constructor(_id, title, description, state) {
+    constructor(_id, user_id, title, description, state) {
         this._id = _id;
+        this.user_id = user_id;
         this.title = title;
         this.description = description;
         this.state = state;
@@ -15,6 +16,10 @@ tslib_1.__decorate([
     (0, typegoose_1.prop)({ required: true }),
     tslib_1.__metadata("design:type", String)
 ], Task.prototype, "_id", void 0);
+tslib_1.__decorate([
+    (0, typegoose_1.prop)(),
+    tslib_1.__metadata("design:type", String)
+], Task.prototype, "user_id", void 0);
 tslib_1.__decorate([
     (0, typegoose_1.prop)(),
     tslib_1.__metadata("design:type", String)
@@ -29,7 +34,7 @@ tslib_1.__decorate([
 ], Task.prototype, "state", void 0);
 Task = tslib_1.__decorate([
     (0, typegoose_1.modelOptions)({ schemaOptions: { collection: "tasks", timestamps: true } }),
-    tslib_1.__metadata("design:paramtypes", [String, String, String, String])
+    tslib_1.__metadata("design:paramtypes", [String, String, String, String, String])
 ], Task);
 exports.Task = Task;
 const TaskModel = (0, typegoose_1.getModelForClass)(Task);

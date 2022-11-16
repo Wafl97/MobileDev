@@ -5,7 +5,7 @@ export class TaskViewModel {
     private _API_URL: string;
 
     private constructor() {
-        this._API_URL = "http://127.0.0.1:8080";
+        this._API_URL = "http://127.0.0.1:8080/v1";
     }
 
     public static getIntance(): TaskViewModel {
@@ -27,12 +27,11 @@ export class TaskViewModel {
 
     public remove(task: TaskModel): Promise<TaskModel> {      
         return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task`, {
+            const request = await fetch(`${this._API_URL}/task/${task.id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({id: task.id}),
             });
             resolve(request.json());
         });
@@ -40,7 +39,7 @@ export class TaskViewModel {
 
     public async get(taskId: number): Promise<TaskModel> {
         return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task/find`, {
+            const request = await fetch(`${this._API_URL}/task/${taskId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -65,7 +64,7 @@ export class TaskViewModel {
 
     public async set(task: TaskModel): Promise<TaskModel> {
         return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/tast`, {
+            const request = await fetch(`${this._API_URL}/task`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

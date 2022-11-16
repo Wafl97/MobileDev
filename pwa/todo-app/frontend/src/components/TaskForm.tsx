@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { FormEvent, useContext, useRef } from "react";
 import TaskContext, { updateContext } from "../context/TaskContext";
 
 import TaskModel from "../models/TaskModel";
@@ -18,7 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = () => {
     const taskTitle = useRef<HTMLInputElement>(null);
     const taskDescription = useRef<HTMLInputElement>(null);
 
-    const submit = (event: { preventDefault: () => void; }) => {
+    const submit = (event: FormEvent) => {
         event.preventDefault();
         if (taskTitle.current === null || taskDescription.current === null) {
             return;
@@ -28,6 +28,8 @@ const TaskForm: React.FC<TaskFormProps> = () => {
             return;
         }
         const newTask = new TaskModel(
+            "",
+            "",
             taskTitle.current.value,
             taskDescription.current.value
         );

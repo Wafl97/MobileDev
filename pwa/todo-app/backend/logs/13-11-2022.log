@@ -149,3 +149,23 @@
 14-11-2022 @ 4:9:21 ::	GET /v1/task
 14-11-2022 @ 4:9:21 ::	GET /v1/task
 14-11-2022 @ 4:9:21 ::	GET /v1/task/123
+16-11-2022 @ 3:4:50 ::	Starting server...
+16-11-2022 @ 3:4:50 ::	Attempting to connect to DB...
+16-11-2022 @ 3:4:50 ::	DB connection established
+16-11-2022 @ 3:4:50 ::	Express listening at: http://127.0.0.1:8080
+16-11-2022 @ 3:6:20 ::	Starting server...
+16-11-2022 @ 3:6:20 ::	Attempting to connect to DB...
+16-11-2022 @ 3:6:20 ::	DB connection established
+16-11-2022 @ 3:6:20 ::	Express listening at: http://127.0.0.1:8080
+16-11-2022 @ 3:6:20 ::	GET /v1/task
+16-11-2022 @ 3:6:20 ::	GET /v1/task
+16-11-2022 @ 3:6:20 ::	GET /v1/task
+16-11-2022 @ 3:6:20 ::	GET /v1/task
+16-11-2022 @ 3:6:20 ::	POST /v1/task
+16-11-2022 @ 3:6:20 ::	GET /v1/task
+16-11-2022 @ 4:12:40 ::	Starting server...
+16-11-2022 @ 4:12:40 ::	Attempting to connect to DB...
+16-11-2022 @ 4:12:40 ::	Express listening at: http://127.0.0.1:8080
+16-11-2022 @ 4:12:40 ::	DB connection established
+16-11-2022 @ 4:12:40 ::	GET /v1/task
+16-11-2022 @ 4:12:40 ::	GET /v1/task

@@ -15,7 +15,7 @@ export class Logger {
     }
 
     public log(message: string): void {
-        fs.appendFile("./logs/13-11-2022.log", `${this.now()} ::\t${message}\n`, (err) => {
+        fs.appendFile("./logs/server.log", `${this.now()} ::\t${message}\n`, (err) => {
             if (err) {
                 console.log(err);
             }

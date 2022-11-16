@@ -7,13 +7,13 @@ export enum TaskState {
 }
 
 export default class Task {
-    id: string;
+    _id: string;
     title: string;
     description: string;
     state: TaskState = TaskState.TODO;
 
     constructor(title: string, description: string) {
-        this.id = uuidv4();
+        this._id = uuidv4();
         this.title = title;
         this.description = description;
     }

@@ -5,26 +5,19 @@ const express_1 = tslib_1.__importStar(require("express"));
 const cors_1 = tslib_1.__importDefault(require("cors"));
 const logger_1 = tslib_1.__importDefault(require("./log/logger"));
 const Routes_1 = tslib_1.__importDefault(require("./routes/Routes"));
-const TestDB_1 = tslib_1.__importDefault(require("./database/TestDB"));
 const MongoDB_1 = tslib_1.__importDefault(require("./database/MongoDB"));
-const Env = tslib_1.__importStar(require("./env/Env"));
-Env.init();
+const Env_1 = tslib_1.__importDefault(require("./env/Env"));
 //dotenv.config();
-//const PORT = process.env.PORT;
-//const URL = process.env.URL;
-const { PORT, URL } = Env.default();
+const PORT = Env_1.default.PORT;
+const URL = Env_1.default.URL;
 const Logger = (0, logger_1.default)();
 // Not a real db
 const Mongo = new MongoDB_1.default();
-Mongo.connect();
-const DB = (0, TestDB_1.default)();
+//const DB = testDB();
 const App = (0, express_1.default)();
 Logger.log("Starting server...");
 Logger.log("Attempting to connect to DB...");
-if (!DB.connect()) {
-    console.log("No DB connection!");
-    process.exit(1);
-}
+Mongo.connect();
 Logger.log("DB connection established");
 App
     .use(express_1.default.json())

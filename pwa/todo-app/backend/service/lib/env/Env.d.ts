@@ -1,5 +1,5 @@
-export declare const init: () => void;
-declare const Env: () => {
+declare const _default: {
+    NODE_ENV: string;
     PORT: string;
     URL: string;
     DB_USER: string;
@@ -8,4 +8,4 @@ declare const Env: () => {
     DB_PORT: string;
     DB_DATABASE: string;
 };
-export default Env;
+export default _default;

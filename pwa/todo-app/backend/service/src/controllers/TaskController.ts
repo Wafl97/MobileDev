@@ -29,12 +29,18 @@ export default class TaskController {
     }
 
     async updateTask(req: Request, res: Response): Promise<Response> {
+        if (!req.body._id) return res.status(404).json({"missing _id": "req.body._id is undefined"});
         const task: Task = await TaskModel.findByIdAndUpdate(
-            { _id : req.body.id }, 
+            { _id : req.body._id },
+            { 
+                title: req.body.title,
+                description: req.body.description,
+                state: req.body.state,
+            },
             { returnOriginal: false }
         );
 
-        if(!task) return res.status(404).json({"bad id": `task with id [${req.params.task_id}] not found`});
+        if(!task) return res.status(404).json({"bad id": `task with id [${req.body._id}] not found`});
         return res.json(task);
     }
 

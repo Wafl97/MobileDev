@@ -1,33 +1,26 @@
 import express, { urlencoded } from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import logger from "./log/logger";
 import Routes from "./routes/Routes"
 import testDB from "./database/TestDB";
 import MongoDB from "./database/MongoDB";
-import * as Env from "./env/Env";
+import Env from "./env/Env";
 
-Env.init();
 //dotenv.config();
-//const PORT = process.env.PORT;
-//const URL = process.env.URL;
-const { PORT, URL } = Env.default();
+const PORT = Env.PORT;
+const URL = Env.URL;
 
 const Logger = logger();
 // Not a real db
-const Mongo = new MongoDB()
-Mongo.connect();
-const DB = testDB();
+const Mongo = new MongoDB();
+//const DB = testDB();
 const App = express();
 
 Logger.log("Starting server...");
 
-Logger.log("Attempting to connect to DB...")
-if (!DB.connect()) {
-    console.log("No DB connection!");
-    process.exit(1);
-}
-Logger.log("DB connection established")
+Logger.log("Attempting to connect to DB...");
+Mongo.connect();
+Logger.log("DB connection established");
 
 App
     .use(express.json())

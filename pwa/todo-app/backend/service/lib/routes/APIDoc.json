@@ -1,0 +1,71 @@
+{
+    "base_url": "/api/v1",
+    "users": {},
+    "tasks": {
+        "GET /task": {
+            "description": "returns all tasks"
+        },
+        "GET /task/:task_id": {
+            "description": "returns the task with the given task_id",
+            "parameters": {
+                ":task_id": ["string", "required"]
+            }
+        },
+        "POST /task": {
+            "description": "add a task",
+            "body": {
+                "_id": [
+                    "string",
+                    "required"
+                ],
+                "user_id": [
+                    "string",
+                    "required"
+                ],
+                "title": [
+                    "string",
+                    "required"
+                ],
+                "description": [
+                    "string",
+                    "optional"
+                ],
+                "state": [
+                    "string",
+                    "required"
+                ]
+            }
+        },
+        "PATCH /task": {
+            "description": "update a task",
+            "body": {
+                "_id": [
+                    "string",
+                    "required"
+                ],
+                "user_id": [
+                    "string",
+                    "required"
+                ],
+                "title": [
+                    "string",
+                    "required"
+                ],
+                "description": [
+                    "string",
+                    "optional"
+                ],
+                "state": [
+                    "string",
+                    "required"
+                ]
+            }
+        },
+        "DELETE /task/:task_id": {
+            "description": "remove a task with the given task_id",
+            "parameters": {
+                ":task_id": ["string", "required"]
+            }
+        }
+    }
+}

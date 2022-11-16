@@ -1,3 +1,4 @@
+import Env from "./config/Env";
 import { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -12,6 +13,9 @@ import routes from "./config/Routes";
 import IRoute from "./interfaces/IRoute";
 import UserContext from './context/UserContext';
 import User from './models/UserModel';
+
+console.log(Env);
+
 
 function App() {
 

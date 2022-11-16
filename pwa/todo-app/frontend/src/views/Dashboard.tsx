@@ -28,7 +28,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <h3>Todo</h3>
                         <div className="task-list">
                             {todoTasks?.map(task => {
-                                return <TaskCard key={task.id} task={task} />
+                                return <TaskCard key={task._id} task={task} />
                             })}
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <h3>Doing</h3>
                         <div className="task-list">
                             {doingTasks?.map(task => {
-                                return <TaskCard key={task.id} task={task}/>
+                                return <TaskCard key={task._id} task={task}/>
                             })}
                         </div>
                     </div>
@@ -44,7 +44,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <h3>Done</h3>
                         <div className="task-list">
                             {doneTasks?.map(task => {
-                                return <TaskCard key={task.id} task={task}/>
+                                return <TaskCard key={task._id} task={task}/>
                             })}
                         </div>
                     </div>

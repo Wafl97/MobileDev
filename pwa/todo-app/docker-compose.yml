@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  pwa_frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 3000:3000
+    networks:
+      - network2
+  pwa_backend:
+    build:
+      context: ./backend/service
+    ports:
+     - 3366:3366
+    networks:
+      - network1
+      - network2
+  mongo_database:
+    build:
+      context: ./backend/database
+    ports:
+      - 27017:27017
+    networks: 
+      - network1
+
+networks:
+  network1:
+    driver: bridge
+  network2:
+    driver: bridge

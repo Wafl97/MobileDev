@@ -1,3 +1,4 @@
+import ENV from "../config/Env";
 import TaskModel from "../models/TaskModel";
 
 export class TaskViewModel {
@@ -5,7 +6,7 @@ export class TaskViewModel {
     private _API_URL: string;
 
     private constructor() {
-        this._API_URL = "http://127.0.0.1:8080/v1";
+        this._API_URL = ENV.API_URL;
     }
 
     public static getIntance(): TaskViewModel {
@@ -27,7 +28,7 @@ export class TaskViewModel {
 
     public remove(task: TaskModel): Promise<TaskModel> {      
         return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task/${task.id}`, {
+            const request = await fetch(`${this._API_URL}/task/${task._id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -44,7 +45,6 @@ export class TaskViewModel {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({id: taskId}),
             });
             resolve(request.json());
         });

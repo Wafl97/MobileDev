@@ -7,25 +7,25 @@ services:
     ports:
       - 3000:3000
     networks:
-      - network2
+      - fronted
   pwa_backend:
     build:
       context: ./backend/service
     ports:
      - 3366:3366
     networks:
-      - network1
-      - network2
+      - backend
+      - fronted
   mongo_database:
     build:
       context: ./backend/database
     ports:
       - 27017:27017
     networks: 
-      - network1
+      - backend
 
 networks:
-  network1:
+  backend:
     driver: bridge
-  network2:
+  fronted:
     driver: bridge

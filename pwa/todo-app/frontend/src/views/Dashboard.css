@@ -1,6 +1,11 @@
 .dashboard {
-    height: 100%;
+    min-width: calc(3 * 12.75rem);
+    height: 90%;
     overflow: hidden;
+}
+
+.main {
+    height: 100%;
 }
 
 .main-content {
@@ -15,15 +20,6 @@
     height: 100%;
 }
 
-.task-list {
-    margin: auto;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-width: 12.75rem;
-    height: 75%;
-    background-color: #ffffff60;
-}
-
 .tasks-todo {
     background-color: orange;
 }
@@ -34,4 +30,31 @@
 
 .tasks-done {
     background-color: chartreuse;
+}
+
+.add-task {
+    color: black;
+    text-align: center;
+    font-size: 1.25rem;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    background-color: rgba(255,255,255,0.75);
+    margin-block: auto;
+    border: solid rgba(255,255,255,0.5) 1px;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: .125rem;
+}
+
+.task-form {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
 }

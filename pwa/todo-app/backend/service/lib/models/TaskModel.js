@@ -17,7 +17,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], Task.prototype, "_id", void 0);
 tslib_1.__decorate([
-    (0, typegoose_1.prop)(),
+    (0, typegoose_1.prop)({ required: true }),
     tslib_1.__metadata("design:type", String)
 ], Task.prototype, "user_id", void 0);
 tslib_1.__decorate([

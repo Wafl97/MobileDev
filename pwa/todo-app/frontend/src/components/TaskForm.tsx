@@ -1,42 +1,45 @@
 import React, { FormEvent, useContext, useRef } from "react";
-import TaskContext, { updateContext } from "../context/TaskContext";
+import TaskContext from "../context/TaskContext";
+import UserContext from "../context/UserContext";
 
-import TaskModel from "../models/TaskModel";
-import taskViewModel, { TaskViewModel } from "../viewmodels/TaskViewModel";
+import Task from "../models/TaskModel";
+import taskViewModel from "../viewmodels/TaskViewModel";
 import "./TaskForm.css";
 
 interface TaskFormProps {
-    
+    toggleShowForm(): any;
 }
 
-const TaskForm: React.FC<TaskFormProps> = () => {
+const TaskForm: React.FC<TaskFormProps> = ({toggleShowForm}: TaskFormProps) => {
 
-    const viewModel: TaskViewModel = taskViewModel();
-    const { setTodoTasks, setDoingTasks, setDoneTasks } = useContext(TaskContext);
+    const { user } = useContext(UserContext);
+    const { setTasks } = useContext(TaskContext);
 
 
     const taskTitle = useRef<HTMLInputElement>(null);
     const taskDescription = useRef<HTMLInputElement>(null);
 
-    const submit = (event: FormEvent) => {
-        event.preventDefault();
-        if (taskTitle.current === null || taskDescription.current === null) {
+    const submit = async (event: FormEvent) => {
+        event.preventDefault();       
+        if (!taskTitle.current || !taskDescription.current || !user) {
             return;
         }
         if (taskTitle.current.value === "") {
             alert("Please enter a title!");
             return;
         }
-        const newTask = new TaskModel(
+        const newTask = new Task(
             "",
-            "",
+            user._id,
             taskTitle.current.value,
             taskDescription.current.value
         );
-        viewModel.add(newTask);       
+        taskViewModel().createTask(newTask).then(results => {
+            setTasks(results)
+        });       
         taskTitle.current.value = "";
         taskDescription.current.value = "";
-        updateContext(setTodoTasks,setDoingTasks,setDoneTasks);
+        toggleShowForm();
     }
 
     return (

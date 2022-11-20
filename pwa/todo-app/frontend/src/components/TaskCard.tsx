@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
 
-import taskViewModel, { TaskViewModel } from "../viewmodels/TaskViewModel";
+import taskViewModel from "../viewmodels/TaskViewModel";
 import TaskModel, { TaskState } from "../models/TaskModel";
 import "./TaskCard.css";
-import TaskContext, { updateContext } from "../context/TaskContext";
+import TaskContext from "../context/TaskContext";
 
 interface TaskCardProps {
     task: TaskModel
@@ -11,8 +11,8 @@ interface TaskCardProps {
  
 const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
 
-    const viewModel: TaskViewModel = taskViewModel();
-    const { setTodoTasks, setDoingTasks, setDoneTasks } = useContext(TaskContext);
+    const { setTasks } = useContext(TaskContext);
+    const [taskState, setTaskState] = useState(task);
 
     const [editModal, setEditModal] = useState(false);
 
@@ -34,8 +34,10 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
             default:
                 return;
         }
-        viewModel.set(task);
-        updateContext(setTodoTasks,setDoingTasks,setDoneTasks);
+        setTaskState(task);
+        taskViewModel().updateTask(task).then(results => {
+            setTasks(results);
+        });
     }
 
     const previousState = () => {
@@ -49,13 +51,17 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
             default:
                 return;
         }
-        viewModel.set(task);
-        updateContext(setTodoTasks,setDoingTasks,setDoneTasks);
+        setTaskState(task);
+        taskViewModel().updateTask(task).then(results => {
+            setTasks(results);
+        });;
     }
 
     const deleteTask = () => {
-        viewModel.remove(task);
-        updateContext(setTodoTasks,setDoingTasks,setDoneTasks);
+        taskViewModel().removeTask(task).then(results => {           
+            setTasks(results);
+        });
+        
     }
 
     const saveEdit = (event: { preventDefault: () => void; }) => {
@@ -69,7 +75,9 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
         }
         task.title = taskTitle.current.value;
         task.description = taskDescription.current.value;
-        viewModel.set(task);
+        taskViewModel().updateTask(task).then(results => {
+            setTasks(results);
+        });
         toggleEditModal();
     }
 
@@ -86,9 +94,9 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
                 </div>
                 {editModal ? 
                 <div className="card-info">
-                    <form onSubmit={saveEdit}>
-                        <input type="text" name="title" id="title" placeholder={task.title} ref={taskTitle}/>
-                        <input type="text" name="description" id="description" placeholder={task.description} ref={taskDescription} />
+                    <form onSubmit={saveEdit} className="task-edit-form">
+                        <input type="text" name="title" id="title" defaultValue={task.title} ref={taskTitle}/>
+                        <input type="text" name="description" id="description" defaultValue={task.description} ref={taskDescription} />
                         <input type="submit" value="Save" />
                     </form>
                 </div>
@@ -98,10 +106,10 @@ const TaskCard: React.FC<TaskCardProps> = ({task}: TaskCardProps) => {
                     <h4>{task.description}</h4>
                 </div>}
                 <div className="card-control">
-                    <button onClick={previousState} disabled={task.state === TaskState.TODO}>
+                    <button onClick={previousState} disabled={taskState.state === TaskState.TODO}>
                         {"<-"}
                     </button>
-                    <button onClick={nextState} disabled={task.state === TaskState.DONE}>
+                    <button onClick={nextState} disabled={taskState.state === TaskState.DONE}>
                         {"->"}
                     </button>
                 </div>

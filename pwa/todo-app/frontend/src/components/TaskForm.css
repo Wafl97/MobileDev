@@ -3,11 +3,6 @@ form {
     flex-direction: column;
 }
 
-input[type=text] {
-    margin: .5rem;
-    width: auto;
-}
-
 .task-create-form>h3 {
     margin: 0px;
 }
@@ -16,5 +11,10 @@ input[type=text] {
     padding: 1rem;
     min-width: 20rem;
     border: dodgerblue solid 1px;
+    background-color: white;
     border-radius: 5px;
+}
+
+.task-create-form > input[type=text] {
+    margin-block: .5rem;
 }

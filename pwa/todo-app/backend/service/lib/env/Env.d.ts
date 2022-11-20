@@ -8,5 +8,6 @@ declare const _default: {
     DB_HOST: string;
     DB_PORT: string;
     DB_DATABASE: string;
+    KEY: string;
 };
 export default _default;

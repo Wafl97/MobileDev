@@ -6,7 +6,7 @@ class Task {
     @prop({ required: true })
     public _id: string;
 
-    @prop()
+    @prop({ required: true })
     public user_id: string;
 
     @prop()

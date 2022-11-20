@@ -1,78 +1,44 @@
-import ENV from "../config/Env";
-import TaskModel from "../models/TaskModel";
+import Task from "../models/TaskModel";
+import Service from "../services/Service";
 
 export class TaskViewModel {
     private static instance: TaskViewModel;
-    private _API_URL: string;
+    private service: Service;
+    private taskMap: Map<string, Task>;
 
     private constructor() {
-        this._API_URL = ENV.API_URL;
+        this.service = new Service(process.env.REACT_APP_API_URL);
+        this.taskMap = new Map();
     }
 
     public static getIntance(): TaskViewModel {
-        return this.instance === undefined ? this.instance = new TaskViewModel() : this.instance;
+        return this.instance ?? (this.instance = new TaskViewModel());
     }
 
-    public async add(task: TaskModel): Promise<TaskModel> {
-        return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(task),
-            });
-            resolve(request.json());
-        });    
+    public async createTask(task: Task): Promise<Task[]> {
+        await this.service.POST(`/task`, task);
+        this.taskMap.set(task._id, task);
+        return Array.from(this.taskMap.values());
     }
 
-    public remove(task: TaskModel): Promise<TaskModel> {      
-        return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task/${task._id}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-            resolve(request.json());
-        });
-        }
-
-    public async get(taskId: number): Promise<TaskModel> {
-        return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task/${taskId}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-            resolve(request.json());
-        });
+    public async removeTask(task: Task): Promise<Task[]> {
+        await this.service.DELETE(`/task/${task._id}`);        
+        this.taskMap.delete(task._id);
+        return Array.from(this.taskMap.values());
     }
 
-    public async getAll(): Promise<TaskModel[]> {
-        return new Promise<TaskModel[]>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            });
-            resolve(request.json());
-        });
+    public async updateTask(task: Task): Promise<Task[]> {
+        await this.service.PATCH(`/task`, task);
+        this.taskMap.set(task._id, task);
+        return Array.from(this.taskMap.values());
     }
 
-    public async set(task: TaskModel): Promise<TaskModel> {
-        return new Promise<TaskModel>(async resolve => {
-            const request = await fetch(`${this._API_URL}/task`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(task),
-            });
-            resolve(request.json());
-        });
+    public async getAllTasks(user_id: string): Promise<Task[]> {
+        const result = await this.service.GET(`/task/${user_id}`);
+        result.value.tasks?.forEach(task => {
+            this.taskMap.set(task._id,task);
+        })
+        return Array.from(this.taskMap.values());
     }
 }
 

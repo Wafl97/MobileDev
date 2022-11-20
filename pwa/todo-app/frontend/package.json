@@ -32,8 +32,8 @@
     "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "set REACT_APP_API_URL=http://127.0.0.1:3366/api/v1&& set REACT_APP_API_KEY=VerySecretKey&& react-scripts start",
+    "build": "set REACT_APP_API_URL=http://127.0.0.1:3366/api/v1&& set REACT_APP_API_KEY=VerySecretKey&& react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

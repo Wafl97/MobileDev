@@ -2,13 +2,10 @@
     "base_url": "/api/v1",
     "users": {},
     "tasks": {
-        "GET /task": {
-            "description": "returns all tasks"
-        },
-        "GET /task/:task_id": {
-            "description": "returns the task with the given task_id",
+        "GET /task/:user_id": {
+            "description": "returns all tasks of a given user",
             "parameters": {
-                ":task_id": ["string", "required"]
+                ":user_id": ["string", "required"]
             }
         },
         "POST /task": {

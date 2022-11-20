@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 export default class TaskController {
     constructor();
-    findAllTasks(req: Request, res: Response): Promise<Response>;
-    findTask(req: Request, res: Response): Promise<Response>;
-    storeTask(req: Request, res: Response): Promise<Response>;
-    updateTask(req: Request, res: Response): Promise<Response>;
-    removeTask(req: Request, res: Response): Promise<Response>;
+    getTasks(req: Request, res: Response): Promise<Response>;
+    postTask(req: Request, res: Response): Promise<Response>;
+    patchTask(req: Request, res: Response): Promise<Response>;
+    deleteTask(req: Request, res: Response): Promise<Response>;
 }

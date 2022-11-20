@@ -1,47 +1,30 @@
-import Env from "./config/Env";
 import { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-
 import './App.css';
-
-//Context
-import TaskContext from "./context/TaskContext";
-
-//Routes
 import routes from "./config/Routes";
 import IRoute from "./interfaces/IRoute";
 import UserContext from './context/UserContext';
 import User from './models/UserModel';
-
-console.log(Env);
-
+import userViewModel from './viewmodels/UserViewModel';
+import Task from './models/TaskModel';
+import TaskContext from './context/TaskContext';
 
 function App() {
-
-  const [todoTasks, setTodoTasks] = useState();
-  const [doingTasks, setDoingTasks] = useState();
-  const [doneTasks, setDoneTasks] = useState();
+  
   const [user, setUser] = useState<User>();
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-  useEffect(() => {
-    //Check if there is a user session key
-    const localUser = localStorage.getItem("user");
-    if (localUser) {
-      console.log(localUser);
-      
-      const userJson = JSON.parse(localUser);
-      const { id, username, password } = userJson;
-      setUser(new User(id, username, password))
-    }
-    
-  },[])
+  useEffect(() => {    
+    userViewModel().config(setUser);
+    userViewModel().retreiveUser();
+  }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={{ user, setUser }}>
-          <TaskContext.Provider value={{ todoTasks, setTodoTasks, doingTasks, setDoingTasks, doneTasks, setDoneTasks }}>
+          <TaskContext.Provider value={{ tasks, setTasks }}>
             <Suspense fallback="Loading...">
               <Header />
               <Routes>

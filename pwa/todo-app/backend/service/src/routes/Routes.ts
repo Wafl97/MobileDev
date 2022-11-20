@@ -1,28 +1,27 @@
 import { Router } from "express";
-import { logReqest } from "../log/logger";
 import UserController from "../controllers/UserController";
 import TaskController from "../controllers/TaskController";
 import APIDoc from "./APIDoc.json";
+import { authenticate } from "../middleware/Authentication";
 
 const uc = new UserController();
 const tc = new TaskController();
 
 const Routes: Router[] = [
     //API Doc
-    Router().get('/',logReqest,(req,res) => {return res.status(200).json(APIDoc)}),
+    Router().get('/',(req,res) => {return res.status(200).json(APIDoc)}),
 
     //User Controller
-    Router().get('/login',logReqest,uc.login),
-    Router().post('/user',logReqest,uc.storeUser),
-    Router().patch('/user',logReqest,uc.updateUser),
-    Router().delete('/user',logReqest,uc.removeUser),
+    Router().post('/login',authenticate,uc.login),
+    Router().post('/user',authenticate,uc.postUser),
+    Router().patch('/user',authenticate,uc.patchUser),
+    Router().delete('/user',authenticate,uc.deleteUser),
 
     //Task Controller
-    Router().get('/task',logReqest,tc.findAllTasks),
-    Router().get('/task/:task_id',logReqest,tc.findTask),
-    Router().post('/task',logReqest,tc.storeTask),
-    Router().patch('/task',logReqest,tc.updateTask),
-    Router().delete('/task/:task_id',logReqest,tc.removeTask),
+    Router().get('/task/:user_id',authenticate,tc.getTasks),
+    Router().post('/task',authenticate,tc.postTask),
+    Router().patch('/task',authenticate,tc.patchTask),
+    Router().delete('/task/:task_id',authenticate,tc.deleteTask),
 ];
 
 export default Routes;

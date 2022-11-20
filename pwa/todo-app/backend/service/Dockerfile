@@ -10,7 +10,6 @@ COPY ./src ./src
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./package.json ./package.json
 COPY ./.env.production ./.env.production
-COPY ./logs ./logs
 
 RUN npm install 
 

@@ -19,4 +19,13 @@ export default class Task {
         this.title = title;
         this.description = description;
     }
+
+    public static from(task: Task) {
+        return new Task(task._id, task.user_id, task.title, task.description).setState(task.state);
+    }
+
+    public setState(state: TaskState): Task {
+        this.state = state;
+        return this;
+    }
 }

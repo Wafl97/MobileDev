@@ -1,0 +1,8 @@
+.task-list {
+    margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 12.75rem;
+    height: 90%;
+    background-color: #ffffff60;
+}

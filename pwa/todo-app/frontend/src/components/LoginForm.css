@@ -1,0 +1,5 @@
+.login-form {
+    display: flex;
+    width: 15rem;
+    margin-inline: auto;
+}

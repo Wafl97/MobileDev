@@ -29,9 +29,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
             taskViewModel().getAllTasks(user._id).then(results => {
                 setTasks(results);
             });
-        }
-        console.log("HERE");
-        
+        }        
         
     }, [user, setTasks]);
 

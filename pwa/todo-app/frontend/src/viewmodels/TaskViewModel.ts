@@ -11,29 +11,29 @@ export class TaskViewModel {
         this.taskMap = new Map();
     }
 
-    public static getIntance(): TaskViewModel {
+    static getIntance(): TaskViewModel {
         return this.instance ?? (this.instance = new TaskViewModel());
     }
 
-    public async createTask(task: Task): Promise<Task[]> {
+    async createTask(task: Task): Promise<Task[]> {
         await this.service.POST(`/task`, task);
         this.taskMap.set(task._id, task);
         return Array.from(this.taskMap.values());
     }
 
-    public async removeTask(task: Task): Promise<Task[]> {
+    async removeTask(task: Task): Promise<Task[]> {
         await this.service.DELETE(`/task/${task._id}`);        
         this.taskMap.delete(task._id);
         return Array.from(this.taskMap.values());
     }
 
-    public async updateTask(task: Task): Promise<Task[]> {
+    async updateTask(task: Task): Promise<Task[]> {
         await this.service.PATCH(`/task`, task);
         this.taskMap.set(task._id, task);
         return Array.from(this.taskMap.values());
     }
 
-    public async getAllTasks(user_id: string): Promise<Task[]> {
+    async getAllTasks(user_id: string): Promise<Task[]> {
         const result = await this.service.GET(`/task/${user_id}`);
         result.value.tasks?.forEach(task => {
             this.taskMap.set(task._id,task);

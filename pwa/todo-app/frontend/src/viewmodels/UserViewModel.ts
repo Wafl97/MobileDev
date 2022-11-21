@@ -9,11 +9,11 @@ export class UserViewModel {
         this.service = new Service(process.env.REACT_APP_API_URL)
     }
 
-    public static getIntance(): UserViewModel {
+    static getIntance(): UserViewModel {
         return this.instance === undefined ? this.instance = new UserViewModel() : this.instance;
     }
 
-    public retreiveUser(): User | undefined {
+    retreiveUser(): User | undefined {
         const localUser = localStorage.getItem("user");
         if (localUser) {
             const userJson = JSON.parse(localUser);
@@ -22,7 +22,7 @@ export class UserViewModel {
         return undefined;
     }
 
-    public async login(username: string, password: string, stayLoggedIn: boolean): Promise<User | undefined> {
+    async login(username: string, password: string, stayLoggedIn: boolean): Promise<User | undefined> {
         const result = await this.service.POST(`/login`,{username: username, password: password});
         const message = result.message;
         if (!result.value || !result.value.user) {
@@ -33,7 +33,7 @@ export class UserViewModel {
         return result.value.user;
     }
 
-    public async createUser(username: string, password: string, stayLoggedIn: boolean) {
+    async createUser(username: string, password: string, stayLoggedIn: boolean): Promise<User | undefined> {
         const result = await this.service.POST(`/user`, new User("", username, password));
         const message = result.message;
         if (!result.value || !result.value.user) {
@@ -44,7 +44,7 @@ export class UserViewModel {
         return result.value.user;
     }
 
-    public logout(): undefined {
+    logout(): undefined {
         localStorage.removeItem("user");
         return undefined;
     }

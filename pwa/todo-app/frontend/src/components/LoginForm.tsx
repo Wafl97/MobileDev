@@ -1,4 +1,5 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useContext, useRef, useState } from "react";
+import UserContext from "../context/UserContext";
 import userViewModel from "../viewmodels/UserViewModel";
 import "./LoginForm.css";
 
@@ -8,24 +9,23 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = () => {
 
+    const { setUser } = useContext(UserContext);
     const username = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
     const [stayLoggedIn, setStayLoggedIn] = useState(false);
 
-    const login = async (event: FormEvent) => {
-        event.preventDefault()
-        if (!username.current || !password.current) {
-            return;
-        }
-        await userViewModel().login(username.current.value,password.current.value,stayLoggedIn);
+    const login = (event: FormEvent) => {
+        event.preventDefault();
+        userViewModel().login(username.current!.value,password.current!.value,stayLoggedIn).then(result => {
+            setUser(result);
+        });
     }
 
-    const createNewUser = async (event: FormEvent) => {
-        event.preventDefault()
-        if (!username.current || !password.current) {
-            return;
-        }
-        await userViewModel().createUser(username.current.value,password.current.value,stayLoggedIn);
+    const createNewUser = (event: FormEvent) => {
+        event.preventDefault();
+        userViewModel().createUser(username.current!.value,password.current!.value,stayLoggedIn).then(result => {
+            setUser(result);
+        });
     }
 
 

@@ -10,10 +10,10 @@ interface HeaderProps {
  
 const Header: React.FC<HeaderProps> = () => {
 
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const logout = (event: React.MouseEvent) => {
-        userViewModel().logout();
+        setUser(userViewModel().logout());
     }
 
     return (

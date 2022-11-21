@@ -16,12 +16,12 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {    
-    userViewModel().config(setUser);
-    userViewModel().retreiveUser();
+    setUser(userViewModel().retreiveUser());
   }, []);
 
   return (
     <div className="App">
+      <div className="background" />
       <BrowserRouter>
         <UserContext.Provider value={{ user, setUser }}>
           <TaskContext.Provider value={{ tasks, setTasks }}>

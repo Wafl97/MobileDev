@@ -3,28 +3,23 @@ import Service from "../services/Service";
 
 export class UserViewModel {
     private static instance: UserViewModel;
-    private _setUser: any;
     private service: Service;
 
     private constructor() {
-        this._setUser = undefined;
         this.service = new Service(process.env.REACT_APP_API_URL)
-    }
-
-    public config(setUser: any): void {
-        this._setUser = setUser
     }
 
     public static getIntance(): UserViewModel {
         return this.instance === undefined ? this.instance = new UserViewModel() : this.instance;
     }
 
-    public retreiveUser(): void {
+    public retreiveUser(): User | undefined {
         const localUser = localStorage.getItem("user");
         if (localUser) {
             const userJson = JSON.parse(localUser);
-            this._setUser(userJson)
+            return userJson;
         }
+        return undefined;
     }
 
     public async login(username: string, password: string, stayLoggedIn: boolean): Promise<User | undefined> {
@@ -35,7 +30,6 @@ export class UserViewModel {
             return undefined;
         }
         if (stayLoggedIn) localStorage.setItem("user", JSON.stringify(result.value.user));
-        this._setUser(result.value.user);
         return result.value.user;
     }
 
@@ -47,12 +41,12 @@ export class UserViewModel {
             return undefined;
         }
         if (stayLoggedIn) localStorage.setItem("user", JSON.stringify(result.value.user));
-        this._setUser(result.value.user);
+        return result.value.user;
     }
 
-    public async logout() {
+    public logout(): undefined {
         localStorage.removeItem("user");
-        this._setUser(undefined);
+        return undefined;
     }
 
 }

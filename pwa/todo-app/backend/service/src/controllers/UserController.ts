@@ -15,8 +15,8 @@ export default class UserController {
 
     async postUser(req: Request, res: Response): Promise<Response> {
         try {
-            const salt = await bcrypt.genSalt(10)
-            req.body.password = await bcrypt.hash(req.body.password,salt)
+            const salt = await bcrypt.genSalt(10);
+            req.body.password = await bcrypt.hash(req.body.password,salt);
             const user: User = await UserModel.create(req.body);
             return res.status(201).json(new ReturnObj("success").setValue({ "user": user }));
         }

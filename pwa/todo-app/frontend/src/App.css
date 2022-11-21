@@ -79,5 +79,16 @@ input[type=text]:focus, input[type=password]:focus {
 
 .App {
   background-image: linear-gradient(45deg,indigo,navy,indigo);
+  box-shadow: 0 0 25px 25px #000000;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-image: linear-gradient(45deg,indigo,navy,indigo);
 }
 

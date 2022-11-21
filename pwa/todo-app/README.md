@@ -22,6 +22,6 @@ Node.js + Typescript + express + mongoose
 
 MongoDB
 
-### Frontend
+## Frontend
 
 React + Typescript

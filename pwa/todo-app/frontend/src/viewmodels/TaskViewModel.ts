@@ -40,6 +40,11 @@ export class TaskViewModel {
         })
         return Array.from(this.taskMap.values());
     }
+
+    reset(): undefined{
+        this.taskMap.clear();
+        return undefined;
+    }
 }
 
 const taskViewModel = () => {

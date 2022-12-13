@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mongo_database:
+    build:
+      context: ./backend/database
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+  api:
+    build:
+      context: ./backend/service
+    ports:
+      - 3366:3366
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mongo_database
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
